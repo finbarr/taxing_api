@@ -6,7 +6,7 @@ class TaxingApi::Server
   end.freeze
 
   def self.call(env)
-    zip = env["PATH_INFO"]
+    zip = env["PATH_INFO"][1..-1]
     if r = RATES[zip]
       [200, {'Content-Type' => 'application/json'}, [r]]
     else
